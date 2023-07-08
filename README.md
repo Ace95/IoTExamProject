@@ -1,4 +1,4 @@
-# Pet Smart Bowl - IoTExamProject
+# Pet Smart Bowl - IoT Exam Project
  Exam project for the 2022/23 IoT course @ UNIBO
  
  In this work I present a Smart Bowl for pets, that monitors the water level and send an allert when the level is too low.
@@ -19,8 +19,8 @@ The system is divided into:
 ### On the ESP32
 In the folder "esp32" you can find the script file that must be flashed on the ESP32 board. I developed the code in C++ with the [ArduinoIDE](https://www.arduino.cc/en/software), so make sure to install all the required librariesto be able to run the script correctly.
 
-### On you pc
-On you pc you need to install some components:
+### On your pc
+On your pc you need to install some components:
 - (Optional) Docker desktop to run the InfluxDB composer you find in the folder "docker". You can skip this step if you have an online InfluxDB account;
 -  Grafana;
 -  Mosquitto Broker, this one is needed to handle the MQTT Pub/Sub;
