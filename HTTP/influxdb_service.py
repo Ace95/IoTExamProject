@@ -1,4 +1,3 @@
-#ncUQ8OJBciHQ72Bofze7-Cr4kYPQSjVxyki6l3cATsMNGgxXUVF0hv3Pksf2L8Ozjv2mD49QQISj5cyL1zmCSQ==
 from datetime import datetime
 from influxdb_client import InfluxDBClient, Point, WritePrecision
 from influxdb_client.client.write_api import SYNCHRONOUS
