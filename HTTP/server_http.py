@@ -24,7 +24,7 @@ async def handleToken():
   return await handleGetToken()
 
 def main():
-  os.system('uvicorn crazyapi:app --reload')
+  os.system('uvicorn server_http:app --reload')
 
 if __name__ == "__main__":
     main()
