@@ -17,11 +17,19 @@ The system is divided into:
  ## How to run the full system
 
 ### On the ESP32
-In the folder "esp32" you can find the script file that must be flashed on the ESP32 board. I developed the code in C++ with the [ArduinoIDE](https://www.arduino.cc/en/software), so make sure to install all the required librariesto be able to run the script correctly.
+In the folder "esp32" you can find the script file that must be flashed on the ESP32 board. I developed the code in C++ with the [ArduinoIDE](https://www.arduino.cc/en/software), so make sure to install all the required librariesto to be able to run the script correctly.
 
 ### On your pc
-On your pc you need to install some components:
+On your pc you need to install some components and libraries:
 - (Optional) Docker desktop to run the InfluxDB composer you find in the folder "docker". You can skip this step if you have an online InfluxDB account;
--  Grafana;
--  Mosquitto Broker, this one is needed to handle the MQTT Pub/Sub;
+-  [Grafana](https://grafana.com/);
+-  [Mosquitto Broker](https://mosquitto.org/), this one is needed to handle the MQTT Pub/Sub;
+-  [MQTT Explorer](http://mqtt-explorer.com/), I've used this app to change the parameters on the ESP32;
 -  Fast API python library, this library have been used to create the HTTP server that collects data from the ESP32.
+> pip install fast-api
+
+NOTE you need to specify the correcte SSID and IP adresses where requested. Also, you may have to open your ports, in order to allow the communicatin with the ESP32, and run the follwing command: </br>
+> netsh interface portproxy add v4tov4 listenport=xxxx listenaddress=xxx.xxx.xxx.xxx connectport=xxxx connectaddress=127.0.0.1
+
+Once you are done with the set-up, open two terminals: in the first one launch the server_http.py file, while in the second one you must run the Mosquitto Broker.
+At this point you can boot the previously-flashed ESP32 and the system should be online and working.
