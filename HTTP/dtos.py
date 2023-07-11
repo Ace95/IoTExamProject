@@ -10,3 +10,4 @@ class iotData(BaseModel):
   bowlHeight: float
   thresholdLevel: float
   signalQuality: float
+

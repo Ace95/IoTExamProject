@@ -1,10 +1,10 @@
 from datetime import datetime
-from influxdb_client import InfluxDBClient, Point, WritePrecision
+from influxdb_client import InfluxDBClient, Point
 from influxdb_client.client.write_api import SYNCHRONOUS
 from dtos import iotData
 
 # Create the InfluxDb consumer
-token = "ncUQ8OJBciHQ72Bofze7-Cr4kYPQSjVxyki6l3cATsMNGgxXUVF0hv3Pksf2L8Ozjv2mD49QQISj5cyL1zmCSQ=="
+token = "VUwNRvj9p1ORH5yCpK5GOv6qlO_Oyl7EbxRfLHjExvFhMQdFrm7dT3MqGFhswBbY8zTA_mdX1telfwg2czkvHw=="
 org = "ML-IoT"
 url = "http://localhost:8086"
 bucket="IoTExam"
@@ -46,7 +46,7 @@ def get_db_token():
     return token
 
 def get_esp32_data():
-    query = """from(bucket: "CrazyBucket") 
+    query = """from(bucket: "IoTExam") 
         |> range(start: -10m)
         |> filter(fn: (r) => r._measurement == "esp32Events")"""
     tables = query_api.query(query, org="ML-IoT")

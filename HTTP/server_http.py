@@ -4,11 +4,15 @@ from fastapi import FastAPI
 from dtos import iotData
 from endpoints import handlePostData, handleGetData, handleGetToken
 import os
+import sys   
+sys.path.insert(1, 'C:/Users/Marco/Documents/Corsi Uni/Internet of Things/FinalProject/IoTExamProject')
+from forcastModel import read_data
 
 app = FastAPI()
 
 @app.post("/data/")
 async def handlePost(data: iotData):
+  read_data(data)
   return await handlePostData(data)
 
 @app.get("/data/")

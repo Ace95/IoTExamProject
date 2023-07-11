@@ -1,8 +1,14 @@
 from sklearn.metrics import mean_squared_error as mse
 from utils import simpleModel,upgradedModel
+import sys   
+sys.path.insert(1, 'C:/Users/Marco/Documents/Corsi Uni/Internet of Things/FinalProject/IoTExamProject/HTTP')
+from dtos import iotData
+
+def read_data(data: iotData):
+    temperature = data.temperature
 
 
-temperature = 28
+    
 Ktemperature = temperature + 273.2
 humidity = 0.2
 baseLevel = 5
