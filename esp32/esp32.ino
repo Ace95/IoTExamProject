@@ -6,10 +6,26 @@
 #include <ArduinoJson.h>
 #include <String.h>
 #include <HCSR04.h>
+#include <time.h>
 
 // WiFi Login information
 const char* ssid = "Acerbis";
 const char* password = "IoT2023Exam";
+
+// NTP server to request utc time
+const char* ntpServer = "pool.ntp.org";
+unsigned long epochTime; 
+
+unsigned long getTime() {
+  time_t now;
+  struct tm timeinfo;
+  if (!getLocalTime(&timeinfo)) {
+    //Serial.println("Failed to obtain time");
+    return(0);
+  }
+  time(&now);
+  return now;
+}
 
 // HTTP Server and MQTT Broker IPs and ports
 const char* http_server = "http://192.168.43.157:8000/temp";
@@ -141,6 +157,7 @@ void loop() {
       float temperature = dht.readTemperature();
       float humidity = dht.readHumidity();
       float RSSI = WiFi.RSSI();
+      epochTime = getTime();
 
       float level = distance - baseLevel;
       char* alarmMsg = "Water level is ok";
@@ -162,11 +179,13 @@ void loop() {
       // Create a JSON object with the data 
       DynamicJsonDocument data(1024);
       data["sensor"] = "CrazyBowl";
-      data["level"] = level;
       data["temperature"]   = temperature;
       data["humidity"] = humidity;
+      data["waterLevel"] = distance;
+      data["baseLevel"] = baseLevel;
       data["RSSI"] = RSSI;
       data["alarm"] = alarmMsg;
+      data["time"] = epochTime;
 
       serializeJson(data, Serial);
       //Send the JSON through HTTP to the data proxy

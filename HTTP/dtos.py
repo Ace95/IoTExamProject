@@ -7,7 +7,7 @@ class iotData(BaseModel):
   temperature: float
   humidity: float
   waterLevel: float
-  bowlHeight: float
-  thresholdLevel: float
-  signalQuality: float
-
+  baseLevel: float
+  RSSI: float
+  alarm: str
+  time: float
