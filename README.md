@@ -25,8 +25,8 @@ On your pc you need to install some components and libraries:
 -  [Grafana](https://grafana.com/);
 -  [Mosquitto Broker](https://mosquitto.org/), this one is needed to handle the MQTT Pub/Sub;
 -  [MQTT Explorer](http://mqtt-explorer.com/), I've used this app to change the parameters on the ESP32;
--  Fast API python library, this library have been used to create the HTTP server that collects data from the ESP32.
-> pip install fast-api
+-  [Fast API](https://fastapi.tiangolo.com/) and [Uvicorn](https://www.uvicorn.org/) python libraries, these libraries have been used to create the HTTP server that collects data from the ESP32.
+> pip install fast-api uvicorn
 
 NOTE you need to specify the correcte SSID and IP adresses where requested. Also, you may have to open your ports, in order to allow the communicatin with the ESP32, and run the follwing command: </br>
 > netsh interface portproxy add v4tov4 listenport=xxxx listenaddress=xxx.xxx.xxx.xxx connectport=xxxx connectaddress=127.0.0.1
