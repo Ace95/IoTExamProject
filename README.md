@@ -3,6 +3,7 @@
  
  In this work I present a Smart Bowl for pets, that monitors the water level and send an allert when the level is too low.
 
+![System architecturet](https://github.com/Ace95/IoTExamProject/blob/main/report/SystemeArchitecture.png)
 ## Architecture
 The system is divided into:
 - Hardware components: ESP32 VROOM by DOiT, DH22 temperature and humidity sensor and HC-SR04 ultrasonic ranging sensor
