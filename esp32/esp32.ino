@@ -7,33 +7,23 @@
 #include <String.h>
 #include <HCSR04.h>
 #include <time.h>
+#include <NTPClient.h>
 
 // WiFi Login information
-const char* ssid = "Acerbis";
-const char* password = "IoT2023Exam";
+const char* ssid = "TIM-92837114";
+const char* password = "EQAdkDRCNT27u9hQkKGxdtky";
 
-// NTP server to request utc time
-const char* ntpServer = "pool.ntp.org";
-unsigned long epochTime; 
-
-unsigned long getTime() {
-  time_t now;
-  struct tm timeinfo;
-  if (!getLocalTime(&timeinfo)) {
-    //Serial.println("Failed to obtain time");
-    return(0);
-  }
-  time(&now);
-  return now;
-}
+// Define NTP Client to get time
+WiFiUDP ntpUDP;
+NTPClient timeClient(ntpUDP, "pool.ntp.org");
 
 // HTTP Server and MQTT Broker IPs and ports
-const char* http_server = "http://192.168.43.157:8000/temp";
-const char* mqtt_server = "192.168.43.157";
+const char* http_server = "http://192.168.1.17:8000/docs";
+const char* mqtt_server = "192.168.1.17";
 int mqtt_port = 1883;
 
 //Sensors initialization
-DHT dht(27,DHT22); //(pin input, sensor model)
+DHT dht(23,DHT22); //(pin input, sensor model)
 UltraSonicDistanceSensor hc(26,25); //(trig pin , echo pin)
 
 WiFiClient espClient;
@@ -46,10 +36,14 @@ int value = 0;
 unsigned long lastTime = 0;
 unsigned long timerDelay = 10000;
 
-float baseLevel = 0;
-float threshold = 0;
-int alarmCounter = 0;
+float baseLevel = 5;
+float threshold = 1;
+int alarmCounter = 1;
 int alarms = 0;
+int status = 0;
+float dt = 0;
+time_t epochTime = 0;
+
 
 void setup() {
   Serial.begin(115200);
@@ -144,6 +138,7 @@ void loop() {
   }
   client_mqtt.loop();
 
+  timeClient.update();
 // Data is sent through HTTP according to the Sampling Rate
   if ((millis() - lastTime) > timerDelay) {
     if(WiFi.status()== WL_CONNECTED){
@@ -157,21 +152,21 @@ void loop() {
       float temperature = dht.readTemperature();
       float humidity = dht.readHumidity();
       float RSSI = WiFi.RSSI();
-      epochTime = getTime();
+
+      epochTime = timeClient.getEpochTime();
+      dt = millis();
 
       float level = distance - baseLevel;
-      char* alarmMsg = "Water level is ok";
 
       if (level > threshold){
         alarms = alarms + 1;
       }
 
-      if (alarms >= alarmCounter){
-        alarmMsg = "Water level is low!";
-        Serial.print("Number of alarms: ");
-        Serial.println(alarms);
+      if (alarms < alarmCounter){
+        status = 0;
+      }else{
+        status = 1;
         alarms = 0;
-        Serial.print("Water level too low! Alert sent!");
       }
 
       http.addHeader("Content-Type", "application/json");
@@ -184,8 +179,9 @@ void loop() {
       data["waterLevel"] = distance;
       data["baseLevel"] = baseLevel;
       data["RSSI"] = RSSI;
-      data["alarm"] = alarmMsg;
       data["time"] = epochTime;
+      data["dt"] = dt;
+      data["status"] = status;
 
       serializeJson(data, Serial);
       //Send the JSON through HTTP to the data proxy

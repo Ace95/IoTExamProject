@@ -4,7 +4,7 @@ from influxdb_client.client.write_api import SYNCHRONOUS
 from dtos import iotData
 
 # Create the InfluxDb consumer
-token = "VUwNRvj9p1ORH5yCpK5GOv6qlO_Oyl7EbxRfLHjExvFhMQdFrm7dT3MqGFhswBbY8zTA_mdX1telfwg2czkvHw=="
+token = "kNOFmpQaU4vZOQgP5IypJTm4t2fFmffwklcK1DwW-hhgb2U4klCTecUz5CwmbJKqE_Rbgww35t28LVDVPKdNZQ=="
 org = "ML-IoT"
 url = "http://localhost:8086"
 bucket="IoTExam"

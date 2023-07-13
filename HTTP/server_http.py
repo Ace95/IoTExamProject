@@ -1,4 +1,4 @@
-# to expose API netsh interface portproxy add v4tov4 listenport=8000 listenaddress=192.168.0.119 connectport=8000 connectaddress=127.0.0.1
+# to expose port netsh interface portproxy add v4tov4 listenport=8000 listenaddress=192.168.43.157 connectport=8000 connectaddress=127.0.0.1
 
 from fastapi import FastAPI
 from dtos import iotData
@@ -6,7 +6,7 @@ from endpoints import handlePostData, handleGetData, handleGetToken
 import os
 import sys   
 sys.path.insert(1, 'C:/Users/Marco/Documents/Corsi Uni/Internet of Things/FinalProject/IoTExamProject')
-from forcastModel import read_data
+from utils import read_data
 
 app = FastAPI()
 
@@ -28,3 +28,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+

@@ -11,3 +11,5 @@ class iotData(BaseModel):
   RSSI: float
   alarm: str
   time: float
+  dt: float
+  status: int
