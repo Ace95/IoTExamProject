@@ -1,4 +1,4 @@
-# Pet Smart Bowl - IoT Exam Project
+# Smart Water Bowl for Pets - IoT Exam Project
  Exam project for the 2022/23 IoT course @ UNIBO
  
  In this work I present a Smart Bowl for pets, that monitors the water level and send an allert when the level is too low.
