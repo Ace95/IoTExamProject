@@ -6,7 +6,7 @@ from endpoints import handlePostData, handleGetData, handleGetToken
 import os
 import sys   
 sys.path.insert(1, 'C:/Users/Marco/Documents/Corsi Uni/Internet of Things/FinalProject/IoTExamProject')
-from utils import read_data
+from forecastModel import read_data
 
 app = FastAPI()
 
@@ -28,5 +28,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-

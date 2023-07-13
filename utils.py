@@ -8,12 +8,3 @@ def upgradedModel(baseLevel,temperature,humidity,dt):
 
     return predLevel
 
-def read_data(data):
-    temperature = data.temperature
-    humidity = data.humidity  
-    baseLevel = data.baseLevel
-    waterLevel = data.waterLevel
-    time = data.time
-    dt = data.dt
-    status = data.status
-    return temperature, humidity, baseLevel, waterLevel, time, dt, status

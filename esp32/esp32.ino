@@ -18,7 +18,7 @@ WiFiUDP ntpUDP;
 NTPClient timeClient(ntpUDP, "pool.ntp.org");
 
 // HTTP Server and MQTT Broker IPs and ports
-const char* http_server = "http://192.168.1.17:8000/docs";
+const char* http_server = "http://192.168.1.17:8000/data/";
 const char* mqtt_server = "192.168.1.17";
 int mqtt_port = 1883;
 
@@ -42,7 +42,7 @@ int alarmCounter = 1;
 int alarms = 0;
 int status = 0;
 float dt = 0;
-time_t epochTime = 0;
+int epochTime = 0;
 
 
 void setup() {
@@ -172,22 +172,23 @@ void loop() {
       http.addHeader("Content-Type", "application/json");
       Serial.print("Sending data...");
       // Create a JSON object with the data 
-      DynamicJsonDocument data(1024);
+      DynamicJsonDocument data(2048);
       data["sensor"] = "CrazyBowl";
       data["temperature"]   = temperature;
       data["humidity"] = humidity;
       data["waterLevel"] = distance;
       data["baseLevel"] = baseLevel;
-      data["RSSI"] = RSSI;
+      data["rssi"] = RSSI;
       data["time"] = epochTime;
       data["dt"] = dt;
       data["status"] = status;
 
-      serializeJson(data, Serial);
+      String json;
+      serializeJson(data, json);
       //Send the JSON through HTTP to the data proxy
-      int httpResponseCode = http.POST("{data}");
+      int httpResponseCode = http.POST(json);
      
-      Serial.println("HTTP Response code: ");
+      Serial.print("HTTP Response code: ");
       Serial.println(httpResponseCode);
         
       // Free resources

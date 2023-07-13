@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-#Data Transfer Object
+# Data Transfer Objects
 
 class iotData(BaseModel):
   sensor: str
@@ -8,8 +8,7 @@ class iotData(BaseModel):
   humidity: float
   waterLevel: float
   baseLevel: float
-  RSSI: float
-  alarm: str
-  time: float
+  rssi: float
+  time: int
   dt: float
   status: int
