@@ -151,6 +151,7 @@ void loop() {
       float distance = hc.measureDistanceCm();
       float temperature = dht.readTemperature();
       float humidity = dht.readHumidity();
+
       float RSSI = WiFi.RSSI();
 
       epochTime = timeClient.getEpochTime();
@@ -185,6 +186,7 @@ void loop() {
 
       String json;
       serializeJson(data, json);
+      serializeJson(data,Serial);
       //Send the JSON through HTTP to the data proxy
       int httpResponseCode = http.POST(json);
      
