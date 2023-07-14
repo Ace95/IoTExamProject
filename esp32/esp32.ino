@@ -10,8 +10,8 @@
 #include <NTPClient.h>
 
 // WiFi Login information
-const char* ssid = "TIM-92837114";
-const char* password = "EQAdkDRCNT27u9hQkKGxdtky";
+const char* ssid = "SSID";
+const char* password = "PASSWORD";
 
 // Define NTP Client to get time
 WiFiUDP ntpUDP;
