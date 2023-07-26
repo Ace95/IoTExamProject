@@ -7,4 +7,3 @@ def upgradedModel(baseLevel,temperature,humidity,dt):
     predLevel = baseLevel + 0.0015*(temperature/humidity)*dt # Upgraded model to also account fot the air temperature and humidity
 
     return predLevel
-

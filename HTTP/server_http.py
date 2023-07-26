@@ -1,4 +1,7 @@
-# to expose port netsh interface portproxy add v4tov4 listenport=8000 listenaddress=192.168.43.157 connectport=8000 connectaddress=127.0.0.1
+# Port forwarding // netsh interface portproxy add v4tov4 listenport=8000 listenaddress=192.168.43.157 connectport=8000 connectaddress=127.0.0.1
+# To reset port forwarding after reboot // netsh interface portproxy delete v4tov4 listenaddress=192.168.0.119 listenport=8000
+# To list all forwarding rules // netsh interface portproxy show all 
+# Note: you must run the cmd promt as administrator 
 
 from fastapi import FastAPI
 from dtos import iotData
