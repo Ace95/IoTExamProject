@@ -32,5 +32,6 @@ On your pc you need to install some components and libraries:
 NOTE you need to specify the correcte SSID and IP adresses where requested. Also, you may have to open your ports, in order to allow the communicatin with the ESP32, and run the follwing command: </br>
 > netsh interface portproxy add v4tov4 listenport=xxxx listenaddress=xxx.xxx.xxx.xxx connectport=xxxx connectaddress=127.0.0.1
 
-Once you are done with the set-up, open two terminals: in the first one launch the server_http.py file, while in the second one you must run the Mosquitto Broker.
-At this point you can boot the previously-flashed ESP32 and the system should be online and working.
+Once you are done with the set-up, open two terminals: in the first one launch the server_http.py file, while in the second one you must run the Mosquitto Broker (if it's not already running as a service).
+At this point you can boot the previously-flashed ESP32 and the system should be online and working like showed in the video demo (report folder).
+
